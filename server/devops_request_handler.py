@@ -67,6 +67,7 @@ REGION_DEFAULT = "sfo1"
 
 global CONFIG
 global SCHEMA
+global USER_DATA
 
 DEVOPS_HANDLER_APP = Flask(__name__)
 
@@ -104,6 +105,7 @@ def parse_args(argv) :
     parser.add_argument('config', help="Full path to the config file for this regression. It should include " + \
                                        "the vm tokens, dbip, dbpw, and dbuser.")
     parser.add_argument('schemaf', help="Full path to the .schema file for a database.")
+    parser.add_argument('userdata', help="Full path to the text-file containing the user data to give to each vm")
     return parser.parse_args()
 
 
@@ -170,6 +172,7 @@ def get_vm_args() :
     vmargs = CONFIG['vmargs']
     vmargs['logutil'] = logutil
     vmargs['logclient'] = VM_LOG_CLIENT 
+    vmargs['user_data'] = USER_DATA
     return vmargs
 
 def get_vm() :
@@ -505,6 +508,7 @@ def create_sshkey() :
 if __name__ == '__main__':
     global CONFIG
     global SCHEMA
+    global USER_DATA
 
     (logutil, dt) = init_logutil()
     logclient = HANDLER_LOG_CLIENT
@@ -520,6 +524,9 @@ if __name__ == '__main__':
 
     CONFIG = load_json_file(args.config) 
     SCHEMA = load_json_file(args.schemaf)
+    with open(args.userdata, 'r') as fh :
+        USER_DATA = fh.read()
+        print USER_DATA
 
     if not CONFIG:
         sys.stderr.write("Failed to parse input configuration file.\n")

@@ -20,6 +20,7 @@ class vmUtil :
         self.tok = vmargs['tok']
         self.logger = vmargs['logutil']
         self.logclient = vmargs['logclient']
+        self.user_data = vmargs['user_data']
         self.manager = None # will be filled on @login call
         socket.setdefaulttimeout(0.5)
 
@@ -134,6 +135,7 @@ class vmUtil :
                                            name=vmargs['name'],
                                            region=vmargs['region'],
                                            image=vmargs['image'],
+                                           user_data=self.user_data,
                                            ssh_keys=sshkeys,
                                            size_slug=vmargs['class'],
                                            backups=False)
