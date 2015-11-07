@@ -1,0 +1,14 @@
+#cloud-config
+groups:
+  - sudo: [praxyk_admin_test]
+  - docker: [praxyk_admin_test]
+  - praxyk: [praxyk_admin_test]
+
+users:
+  - name: praxyk_admin_test
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+        - ssh-rsa FAKE_SSH_PUB_KEY
+

@@ -1,0 +1,16 @@
+{
+  "tables": ["LogEntries", "LogFiles"],
+  "rows": {
+    "LogEntries" : ["project varchar(200)", "timestamp datetime PRIMARY KEY", "numfiles INT",
+                    "type varchar(150)", "description TEXT", "result varchar(50)"],
+    "LogFiles"   : ["path varchar(160)", "name varchar(100)", "timestamp datetime", "project varchar(200)", "content LONGTEXT",
+                    "PRIMARY KEY (timestamp, path, name)"]
+  },
+  "indexes": {
+    "LogEntries" : [["project_ind", "project"], ["type_ind", "type"], ["nfiles_ind", "numfiles"], ["result_ind", "result"],
+                    ["result_project_ind", "result, project"], ["result_timestamp_ind", "result, timestamp"]],
+    "LogFiles"   : [["name_ind", "name"], ["project_ind", "project"]]
+  },
+  "dbname": "MetaData_v2",
+  "file": "meta.schema"
+}

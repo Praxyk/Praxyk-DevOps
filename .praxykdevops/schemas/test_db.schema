@@ -1,0 +1,11 @@
+{
+  "tables": ["TEST_BUFFER"],
+  "rows": {
+    "TEST_BUFFER" : ["name varchar(250) PRIMARY KEY", "data varchar(900)"]
+  },
+  "indexes" : {
+    "TEST_BUFFER" : []
+  },
+  "dbname": "db_unit_test_1",
+  "file": "test.schema"
+}

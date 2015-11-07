@@ -1,0 +1,24 @@
+{
+    "dbargs" : {
+                 "dbip" : "127.0.0.1",
+                 "dbipv4" : "127.0.0.1",
+                 "dbipv6" : "127.0.0.1",
+                 "user" : "root",
+                 "pw" : ""
+    },
+    "vmargs" : {
+        "tok" : "fake_token"
+    },
+    "devopsargs" : {
+        "rootuser"  : "root",
+        "rootpwd"   : "FAKE_PASSWORD_DEVOPS",
+        "rootemail" : "fake@praxyk.com",
+        "auth"      : 2,
+        "sshkey"    : {
+            "name" : "ROOT_KEY",
+            "pubkey_file" : "/home/praxyk_admin/.ssh/id_rsa.pub",
+            "fingerprint" : "SHA256:Kl/aQwEmSDLJFKLSDKFrk4zAi4/RkUGv3II51DQFg"
+        }
+    }
+}
+
