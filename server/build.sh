@@ -27,5 +27,11 @@ RETVAL=$?
 [ $RETVAL -eq 0 ] && echo "  DevOps-Server : MySQL Requirements Install Success"
 [ $RETVAL -ne 0 ] && echo "  DevOps-Server : MySQL Requirements Install Failure" && exit 1
 
+./setup.sh
+
+RETVAL=$?
+[ $RETVAL -eq 0 ] && echo "  DevOps-Server : Directory Setup Success"
+[ $RETVAL -ne 0 ] && echo "  DevOps-Server : Directory Setup Failure" && exit 1
+
 exit 0
 
