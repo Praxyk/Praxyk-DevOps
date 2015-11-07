@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cp praxyk_client.py ~/.praxyk_client
+cp devops_client.py ~/.devops_client
 sudo ln -s ~/.devops_client /usr/bin/devops_client
 mkdir -p ~/.praxykdevops/client/
 
