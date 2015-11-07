@@ -27,6 +27,5 @@ RETVAL=$?
 [ $RETVAL -eq 0 ] && echo "  DevOps : MySQL Requirements Install Success"
 [ $RETVAL -ne 0 ] && echo "  DevOps : MySQL Requirements Install Failure" && exit 1
 
-
 exit 0
 
