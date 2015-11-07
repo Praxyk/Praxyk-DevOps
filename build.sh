@@ -5,27 +5,29 @@
 
 # this script installs and builds all system wide (ubuntu) and python level
 # requirements needed by the devops server
+echo "Beginning Praxyk-Devops Build Process"
+echo "______________________________"
 
-export DEBIAN_FRONTEND=noninteractive
+cp -R .praxykdevops/ ~/.praxykdevops # move the fake config files to the home directory
 
-xargs sudo apt-get -y install < .ubuntu_install
+declare -a arr=("server" "client" )
 
-RETVAL=$?
-[ $RETVAL -eq 0 ] && echo "  Devops: Ubuntu Requirements Install Success"
-[ $RETVAL -ne 0 ] && echo "  Devops : Ubuntu Requirements Install Failure" && exit 1
+sudo apt-get install -y git python-dev python-pip build-essential
+git submodule update --init --recursive
 
-sudo pip install -r .pip_install 
-RETVAL=$?
-[ $RETVAL -eq 0 ] && echo "  Devops : Pip Requirements Install Success"
-[ $RETVAL -ne 0 ] && echo "  Devops : Pip Requirements Install Failure" && exit 1
+for i in "${arr[@]}"
+do
+    echo "  Starting $i Build Process"
+    cd "$i"
+    ./build.sh
+    RETVAL=$?
+    [ $RETVAL -eq 0 ] && echo "  Module $i Build Success"
+    [ $RETVAL -ne 0 ] && echo "  Module $i Build Failure" && exit 1
+    cd ..
+done
 
-sudo apt-get -q -y install mysql-server
-sudo service mysql restart
-mysql -e "create database IF NOT EXISTS test;" -uroot
 
-RETVAL=$?
-[ $RETVAL -eq 0 ] && echo "  DevOps : MySQL Requirements Install Success"
-[ $RETVAL -ne 0 ] && echo "  DevOps : MySQL Requirements Install Failure" && exit 1
-
+echo "Praxyk-Devops Build Success"
+echo "______________________________"
 exit 0
 
