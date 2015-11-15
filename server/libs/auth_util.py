@@ -110,9 +110,11 @@ class authUtil :
     #         normally only used to get validate a user when their token expires and they
     #         need a new one.
     def validate_user(self, username, pwhash) :
+        if not username or not pwhash :
+            return self.logger.log_event(self.logclient, "USER VALIDATE", 'f', ['User'], (username))
         self.logger.log_event(self.logclient, "USER VALIDATE", 'a', ['User'], (username))
         user = self.get_user(username)
-        ret = (user is not None and pwhash == user['pwhash'])
+        ret = (user is not None and pwhash == user.get('pwhash', None))
         return self.logger.log_event(self.logclient, "USER VALIDATE", 's' if ret else 'f', ['User'], (username))
 
     # @info - takes a user and gets a valid token for them. If none are available it makes a new one and returns
