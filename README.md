@@ -1,3 +1,12 @@
+![Travis-CI Build](https://travis-ci.org/Praxyk/Praxyk-DevOps.svg?branch=master)
+
+___
+
+ * [Wiki](https://github.com/Praxyk/Praxyk-Devops/wiki/Home)
+ * [Builds and Tests](https://travis-ci.org/Praxyk/Praxyk-DevOps)
+
+___
+
 #### Development Operations
 
 Development operations covers the acquisition and management of all tools needed for development purposes. This mostly includes tools to regulate shared resource usage amount a group (like VMs and databases) and other tools to provide testing and integration services.
